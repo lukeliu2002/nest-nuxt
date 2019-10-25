@@ -1,0 +1,39 @@
+{
+  "name": "nuxt",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "cross-env IS_NUXT_ENABLED=true nodemon",
+    "dev:client": "nuxt",
+    "dev:server": "nodemon",
+    "build": "run-s clean:dist compile:server compile:client copy:.nuxt copy:client copy:config",
+    "clean:dist": "rimraf dist",
+    "compile:server": "tsc -p tsconfig.build.json",
+    "compile:client": "cross-env mode=production nuxt build",
+    "copy:client": "copyfiles -a \"client/**/*\" dist",
+    "copy:.nuxt": "copyfiles -a \".nuxt/**/*\" dist",
+    "copy:config": "copyfiles nuxt.config.js package.json package-lock.json dist"
+  },
+  "dependencies": {
+    "@nestjs/common": "^6.7.2",
+    "@nestjs/core": "^6.7.2",
+    "@nestjs/platform-express": "^6.7.2",
+    "nuxt": "^2.0.0",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.0",
+    "rxjs": "^6.5.3"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^6.9.0",
+    "@nestjs/schematics": "^6.7.0",
+    "@types/express": "^4.17.1",
+    "@types/node": "^12.7.5",
+    "copyfiles": "^2.1.0",
+    "cross-env": "^5.2.0",
+    "nodemon": "^1.18.10",
+    "npm-run-all": "^4.1.5",
+    "ts-loader": "^6.1.1",
+    "ts-node": "^8.4.1",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.6.3"
+  }
+}
